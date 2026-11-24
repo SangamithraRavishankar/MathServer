@@ -1,5 +1,5 @@
 # Ex.03 Design a Website for Server Side Processing
-## Date:
+## Date:14.11.26
 
 ## AIM:
 To create a web page to calculate Churn Rate using server-side scripts.
@@ -42,12 +42,67 @@ Render the result to the HTML template.
 Publish the website in Localhost.
 
 ## PROGRAM:
+```
+html program
+<html>
+    <head>
+        <title>calculate</title>
+    </head>
+    <body>
+       
+          <h1>Sangamithra(26001739)</h1>
+          <h2>Churnrate</h2>
+          <form method ="POST">
+            {%csrf_token%}
+
+              <label>InitialCustomers:</label>
+              <input type ="number" name="InitialCustomers" value="ic"><br></br>
+
+              <label>CustomersLost:</label>
+              <input type  ="number" name="CustomersLost" value="cl"><br></br>
+              <input type ="submit" value ="Calculate"><br></br>
+
+              <label>Churnrate:</label>
+              <input type = "number" value="Churnrate">
+          </form>
+    </body>
+</html>
+
+views 
+from django.shortcuts import render
+
+def Churnrate(request):
+    ic =int(request.POST.get('InitialCustomers', '0'))
+    cl = int(request.POST.get('CustomersLost', '0'))
+
+    Churnrate=(cl/ic)*100 if request.method == 'POST' else 0
+
+    print("InitialCustomers =", ic)
+    print("CustomersLost =", cl)
+    print("Churnrate =", Churnrate)
+    return render(
+        request,
+        'myapp/churnrate.html',
+        {'ic': ic, 'cl': cl, 'Churnrate':Churnrate}
+    )
+
+    urls 
+    from django.contrib import admin
+from django.urls import path
+from myapp import views
+
+urlpatterns = [
+    path('', views.Churnrate, name='Churnrate'),
+]
+```
 
 
 ## OUTPUT - SERVER SIDE:
+![alt text](image.png)
 
 
 ## OUTPUT - WEBPAGE:
+![alt text](<Screenshot (61).png>)
 
 
 ## RESULT:

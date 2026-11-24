@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>calculate</title>
+    </head>
+    <body>
+       
+          <h1>Sangamithra(26001739)</h1>
+          <h2>Churnrate</h2>
+          <form method ="POST">
+            {%csrf_token%}
+
+              <label>InitialCustomers:</label>
+              <input type ="number" name="InitialCustomers" value="ic"><br></br>
+
+              <label>CustomersLost:</label>
+              <input type  ="number" name="CustomersLost" value="cl"><br></br>
+              <input type ="submit" value ="Calculate"><br></br>
+
+              <label>Churnrate:</label>
+              <input type = "number" value="Churnrate">
+          </form>
+    </body>
+</html>
